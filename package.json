@@ -1,0 +1,5 @@
+{
+  "name": "login_without_devise",
+  "private": true,
+  "dependencies": {}
+}
