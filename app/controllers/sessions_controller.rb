@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user.present?
       if  user.sign_in_count >=3  
+        UserMailer.lock_account_email(user).deliver
         redirect_to login_url, alert: "User has login more than 3 times" 
       else
         if user.authenticate(params[:password])
@@ -20,6 +21,8 @@ class SessionsController < ApplicationController
           redirect_to login_url, alert: "Invalid user/password combination" 
         end
       end
+    else
+      redirect_to login_url, alert: "Invalid user/password combination" 
     end
   end
 
@@ -27,5 +30,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "Logged out"
   end
-
 end
