@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(name: params[:name])
+    user = User.find_by(email: params[:email])
     if user.present?
       if  user.sign_in_count >=3  
         redirect_to login_url, alert: "User has login more than 3 times" 
