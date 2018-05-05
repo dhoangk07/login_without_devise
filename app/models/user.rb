@@ -11,6 +11,12 @@ class User < ApplicationRecord
   has_secure_password
 
   after_destroy :ensure_an_admin_remains
+
+  after_create :send_welcome_email
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
+  end
+
   private
   def ensure_an_admin_remains
     if User.count.zero?
