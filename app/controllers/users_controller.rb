@@ -66,6 +66,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def unlock
+    @user = User.find_by(id: params[:user_id])
+    @user.sign_in_count = 0
+    @user.save
+    redirect_to login_path
+  end
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
