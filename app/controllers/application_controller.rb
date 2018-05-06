@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     user = User.find_by(id: session[:user_id]) 
   end
   helper_method :current_user
+  helper_method :user_signed_in?
 
   protected
   def authorize

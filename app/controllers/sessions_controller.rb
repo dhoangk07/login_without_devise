@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
+  before_action :not_sign_in, only: [:new]
   def new
   end
 
@@ -23,6 +24,12 @@ class SessionsController < ApplicationController
       end
     else
       redirect_to login_url, alert: "Invalid user/password combination" 
+    end
+  end
+
+  def not_sign_in
+    if current_user.present?
+      redirect_to user_path(current_user)
     end
   end
 
