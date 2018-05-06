@@ -87,6 +87,8 @@ GEM
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    has_secure_token (1.0.0)
+      activerecord (>= 3.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -217,6 +219,7 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  has_secure_token
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener

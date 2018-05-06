@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get "sessions/create" 
   delete "sessions/destroy" 
 
-  resources :users do
-    get :unlock
-  end
+  resources :users 
+
+  get '/users/:token/unlock', to: 'users#unlock', :as => :unlock_user
   
   root to: "welcome#index"
 end

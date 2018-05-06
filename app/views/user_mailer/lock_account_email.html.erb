@@ -12,6 +12,6 @@
       So, now we will lock your account
     </p>
     <p>
-      If you want to reactive your account, Please click <%= link_to "Reactive account", user_unlock_url(@user) %> 
+      If you want to reactive your account, Please click <%= link_to "Reactive account", unlock_user_url(@user.reset_token) %> 
   </body>
 </html>

@@ -38,7 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-
+gem 'has_secure_token'
 
 gem 'bootstrap', '~> 4.1.1'
 

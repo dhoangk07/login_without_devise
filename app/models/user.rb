@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_secure_token :reset_token
+
   after_destroy :ensure_an_admin_remains
 
   after_create :send_welcome_email
