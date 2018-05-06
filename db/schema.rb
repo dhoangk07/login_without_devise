@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_06_023845) do
+ActiveRecord::Schema.define(version: 2018_05_06_040437) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_05_06_023845) do
     t.datetime "updated_at", null: false
     t.integer "sign_in_count", default: 0
     t.string "reset_token"
+    t.string "role", default: "user"
   end
 
 end

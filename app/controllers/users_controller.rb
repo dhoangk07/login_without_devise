@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin_only, only: [:index]
+  include UsersHelper
   # GET /users
   # GET /users.json
   def index
@@ -71,6 +72,12 @@ class UsersController < ApplicationController
     @user.sign_in_count = 0
     @user.save
     redirect_to login_path
+  end
+
+  def admin_only
+    unless admin?
+      redirect_to welcome_index_path, :alert => "Access denied."
+    end
   end
   private
   # Use callbacks to share common setup or constraints between actions.
