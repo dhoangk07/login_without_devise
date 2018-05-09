@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :admin_only, only: [:index]
+  skip_before_action :authorize, only: [:forgot_password, :reset_password, :handle_forgot_password, :handle_reset_password ]
   include UsersHelper
   # GET /users
   # GET /users.json
@@ -79,10 +80,38 @@ class UsersController < ApplicationController
       redirect_to welcome_index_path, :alert => "Access denied."
     end
   end
+
+  def forgot_password
+    # user = User.find_by(email: params[:email])
+    # UserMailer.forgot_password_email.deliver
+
+  end
+
+  def handle_forgot_password
+    @email = params[:email]
+    UserMailer.forgot_password_email(@email).deliver 
+  end
+
+  def reset_password
+
+  end
+
+  def handle_reset_password
+    user = User.find_by(email: params[:email])
+    if params[:password_confirmation] === params[:password]
+      user.password = params[:password]
+      user.password_confirmation = params[:password_confirmation]
+      user.save
+      redirect_to login_path, :alert => "Reset Password succesful"
+    else
+      redirect_to reset_password_path, :alert => "Password must matched"
+    end
+  end
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

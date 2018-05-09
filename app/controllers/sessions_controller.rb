@@ -27,14 +27,25 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: "Logged out"
+  end
+
   def not_sign_in
     if current_user.present?
       redirect_to user_path(current_user)
     end
   end
 
-  def destroy
-    session[:user_id] = nil
-    redirect_to root_path, notice: "Logged out"
-  end
+  # def forgotten_password
+  #   user = User.find_by(email: params[:email])
+  #       debugger
+  #   # UserMailer.forgotten_password_email.deliver
+  # end
+
+  # def reset_password
+  #   # UserMailer.forgotten_password_email.deliver 
+
+  # end
 end

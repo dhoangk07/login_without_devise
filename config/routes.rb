@@ -9,6 +9,16 @@ Rails.application.routes.draw do
   end
 
   get "sessions/create" 
+
+  get "users/forgot_password", to: "users#forgot_password", :as => :user_forgot_password
+  
+  post "users/forgot_password", to: "users#handle_forgot_password"
+
+  get "users/reset_password", to: "users#reset_password"
+  
+  post "users/reset_password", to: "users#handle_reset_password"
+
+
   delete "sessions/destroy" 
 
   resources :users 

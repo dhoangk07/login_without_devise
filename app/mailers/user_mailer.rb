@@ -11,4 +11,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(:to => user.email, :subject => "Your account on example.com already locked")
   end
+
+  def forgot_password_email(email)
+    @email = email
+    mail(:to => email, :subject => "Duis aute irure dolor in reprehenderit in voluptate velit ")
+  end
 end
+
